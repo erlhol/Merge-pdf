@@ -41,6 +41,7 @@ def move_files_from_downloads_to_directory(dest_path: str | Path):
             i += 1
     else:
         print("Your loss, get a real computer")
+        # How to: https://stackoverflow.com/questions/35851281/python-finding-the-users-downloads-folder
 
 def files_from_downloads_to_merge(mergename: str | Path):
     merge_p = Path(mergename)
