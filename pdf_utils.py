@@ -25,6 +25,7 @@ def get_file_created_time(filename: str) -> datetime:
     # convert the creation time to a datetime object
     create_time = datetime.fromtimestamp(create_time)
 
+    print("CREATED:",filename,create_time)
     return create_time
 
 def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
