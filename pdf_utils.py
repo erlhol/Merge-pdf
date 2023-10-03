@@ -18,7 +18,8 @@ def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
     None
     """
     merge_p = Path(mergename)
-    assert merge_p.suffix == '.pdf'
+    if merge_p.suffix != '.pdf':
+        raise ValueError("Filename does not contain .pdf suffix")
     p = Path(directory_name)
     merger = PdfMerger()
     for pdf in sorted(p.rglob("*.pdf"),key=os.path.getmtime):
