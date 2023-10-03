@@ -7,27 +7,6 @@ from tkinter import filedialog
 from tkinter import *
 from datetime import datetime
 
-def get_file_created_time(filename: str) -> datetime:
-    """ Function to get the creation time of the file named filename
-    
-    Parameters:
-        - filename (str) : The filename to the file to get creation time of
-    
-    Returns:
-    datetime
-    """
-    # use os.stat to get the file's metadata
-    stat_info = os.stat(filename)
-
-    # get the file's creation time
-    create_time = stat_info.st_birthtime if hasattr(stat_info, 'st_birthtime') else stat_info.st_mtime
-
-    # convert the creation time to a datetime object
-    create_time = datetime.fromtimestamp(create_time)
-
-    print("CREATED:",filename,create_time)
-    return create_time
-
 def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
     """ Procedure to convert pdf files in the directory directory_name to a file named
     mergename. The files are ordered by download time, from oldest to most recent
@@ -44,8 +23,7 @@ def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
         raise ValueError("Filename does not contain .pdf suffix")
     p = Path(directory_name)
     merger = PdfMerger()
-    for pdf in sorted(p.rglob("*.pdf"),key= lambda pdf: get_file_created_time(str(pdf))):
-        print(pdf)
+    for pdf in sorted(p.rglob("*.pdf"),key=os.path.getmtime):
         merger.append(pdf)     
 
     merger.write(mergename)
