@@ -29,7 +29,12 @@ def test_file_created_files_to_one_pdf(example_config) -> None:
     # We created 5 pdf files with one page each, therefore it should be 5 pages
     assert len(PdfReader(new_file_name).pages) == 5 
 
-    # TODO: assert the order of pages. That it is ordered by the date created
+    # Assert that the order is correct. The pages should be in the order they were created
+    reader = PdfReader(new_file_name)
+    i = 0
+    for page in reader.pages:
+        assert page.mediabox.height - 297 == i
+        i += 1
 
 @pytest.mark.parametrize(
     "exception, directory_name, mergename",
