@@ -33,6 +33,7 @@ def test_file_created_files_to_one_pdf(example_config) -> None:
     reader = PdfReader(new_file_name)
     i = 0
     for page in reader.pages:
+        print("Height:",page.mediabox.height)
         assert page.mediabox.height - 297 == i
         i += 1
 
