@@ -7,6 +7,15 @@ from tkinter import filedialog
 from tkinter import *
 
 def files_to_one_pdf(directory_name: str | Path, mergename: str | Path):
+    """ Procedure to convert pdf files in the directory directory_name to a file named
+    mergename
+    
+    Parameters:
+        - directory_name (str or pathlib.Path) : The absolute path to the pdfs directory
+        - mergename (str or pathlib.Path) : The filename for the merged pdf file. Must end with .pdf
+    Returns:
+    None
+    """
     merge_p = Path(mergename)
     assert merge_p.suffix == '.pdf'
     p = Path(directory_name)
