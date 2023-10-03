@@ -15,10 +15,6 @@ def example_config(tmp_path):
     tmp_path (pathlib.Path): fixture which will provide a temporary directory unique
                              to the test invocation, created in the base temporary directory.
     """
-    def create_pdf(pdf_path: str | Path):
-        pdf_writer = PdfWriter()
-        pdf_writer.add_blank_page(219, 297)
-        pdf_writer.write(pdf_path)
 
     pdf_dir: Path = tmp_path / "current_pdfs"
     pdf_dir.mkdir(parents=True, exist_ok=True)
@@ -44,3 +40,8 @@ def example_config(tmp_path):
     os.chdir(tmp_path)
     yield tmp_path
     os.chdir(save_cwd)
+
+def create_pdf(pdf_path: str | Path):
+    pdf_writer = PdfWriter()
+    pdf_writer.add_blank_page(219, 297)
+    pdf_writer.write(pdf_path)
