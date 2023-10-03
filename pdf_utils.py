@@ -23,6 +23,7 @@ def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
     p = Path(directory_name)
     merger = PdfMerger()
     for pdf in sorted(p.rglob("*.pdf"),key=os.path.getmtime):
+        print(pdf)
         merger.append(pdf)     
 
     merger.write(mergename)
