@@ -5,7 +5,6 @@ from pathlib import Path
 import sys
 from tkinter import filedialog
 from tkinter import *
-from datetime import datetime
 
 def files_to_one_pdf(directory_name: str | Path, mergename: str | Path) -> None:
     """ Procedure to convert pdf files in the directory directory_name to a file named

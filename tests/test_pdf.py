@@ -1,4 +1,4 @@
-from pdf_utils import (files_to_one_pdf)
+from pdf_structure_utilites import (files_to_one_pdf)
 from pathlib import Path
 import pytest
 from pypdf import PdfReader
